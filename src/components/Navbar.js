@@ -10,7 +10,7 @@ const Navbar=()=>{
   return (
 
     <nav className='navbar'>
-      <Link to="/">Store</Link>
+      <Link to="/products">Store</Link>
       <Link to="/cart" >
           <img style={{height:'1.5rem'}}src={CartIcon} alt="Shopping cart" />
           {cartItems.length > 0 && (

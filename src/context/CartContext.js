@@ -35,10 +35,10 @@ export const CartProvider = ({ children }) => {
 
       if (existingItem) {
         updatedItems = prevItems.map(item =>
-          item.id === product.id ? { ...item, quantity: item.quantity + quantity } : item
+          item.id === product.id ? { ...item, quantity: item.quantity + Number(quantity)} : item
         );
       } else {
-        updatedItems = [...prevItems, { ...product, quantity }];
+        updatedItems = [...prevItems, { ...product, quantity:Number(quantity) }];
       }
 
       // Save updated cart to local storage

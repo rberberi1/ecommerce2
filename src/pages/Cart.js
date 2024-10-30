@@ -12,6 +12,7 @@ const Cart = () => {
       <p className="cart-summary">Total Price: ${calculateTotalPrice().toFixed(2)}</p>
       </div>
       <div>
+        { itemCount >0 ?( 
       <ul className="cart-items-list">
         {cartItems.map(item => (
           <li key={item.id} className="cart-item">
@@ -27,6 +28,8 @@ const Cart = () => {
           </li>
         ))}
       </ul>
+        ): <p className="cart-items-list">Your cart is empty.</p>
+      }
       </div>
     </div>
   );
