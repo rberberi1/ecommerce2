@@ -1,10 +1,12 @@
-import { products } from "../data";
 import ProductCard from '../components/ProductCard';
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 
 const Store=()=>{
-  const {addToCart}=useContext(CartContext)
+  const {addToCart, getAllProducts}=useContext(CartContext)
+
+  const products=getAllProducts();
+  
   return(
       <div className="products-grid">
       {products.map(product=>(

@@ -1,14 +1,14 @@
 import React, { useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
-import { products } from '../data'; 
 
 
 const ProductDetails = () => {
   const { id } = useParams(); 
-  const { addToCart } = useContext(CartContext); 
-  const product = products.find(item => item.id === parseInt(id)); 
+  const { addToCart , getProductDetails} = useContext(CartContext);  
   const [quantity, setQuantity] = useState(1); 
+
+  const product=getProductDetails(id)
 
   const handleAddToCart = () => {
     if (quantity > 0) {

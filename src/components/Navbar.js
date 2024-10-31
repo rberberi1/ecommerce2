@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { CartContext } from '../context/CartContext';
 import CartCircle from './CartCircle';
+import { useTheme } from '../context/ThemeContext';
 
 const Navbar=()=>{
   const { cartItems } = useContext(CartContext);
+  const {theme, toggleTheme}=useTheme();
 
   return (
 
@@ -17,6 +19,9 @@ const Navbar=()=>{
                       <CartCircle count={cartItems.length}></CartCircle>
                     )}          
       </Link>
+      <button onClick={toggleTheme}>
+          {theme === 'light' ? 'Dark Mode' : 'Light Mode'}
+      </button>
      
     </nav>
   );

@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { CartContext } from '../context/CartContext';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
   const { cartItems, itemCount, calculateTotalPrice, increase, decrease, removeFromCart } = useContext(CartContext);
@@ -9,7 +10,7 @@ const Cart = () => {
       <div className='shopping-cart-price-box'>
       <h2 className="cart-title">Shopping Cart</h2>
       <p className="cart-summary">Products: {itemCount}</p>
-      <p className="cart-summary">Total Price: ${calculateTotalPrice().toFixed(2)}</p>
+      <p className="cart-summary">Total Price: ${calculateTotalPrice.toFixed(2)}</p>
       </div>
       <div>
         { itemCount >0 ?( 
@@ -17,7 +18,7 @@ const Cart = () => {
         {cartItems.map(item => (
           <li key={item.id} className="cart-item">
             <div className="cart-item-details">
-              <span className="cart-item-name">{item.name}</span>
+              <Link to={`/products/${item.id}`}><span className="cart-item-name">{item.name}</span></Link>
               <span className="cart-item-quantity">{item.quantity} x ${item.price.toFixed(2)}</span>
             </div>
             <div className="cart-item-actions">
