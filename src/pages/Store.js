@@ -1,21 +1,21 @@
 import ProductCard from '../components/ProductCard';
-import { useContext } from "react";
-import { CartContext } from "../context/CartContext";
+import { useCart } from '../context/CartContext';
 
-const Store=()=>{
-  const {addToCart, getAllProducts}=useContext(CartContext)
+const Store = () => {
+  const { addToCart, getAllProducts } = useCart();
 
-  const products=getAllProducts();
-  
-  return(
-      <div className="products-grid">
-      {products.map(product=>(
+  const products = getAllProducts();
+
+  return (
+    <div className="products-grid">
+      {products.map(product => (
         <ProductCard 
-        key={product.id} 
-        product={product}
-        onAddToCart={(quantity) => addToCart(product, quantity)}/>
+          key={product.id}
+          product={product}
+          onAddToCart={(quantity) => addToCart(product, quantity)}
+        />
       ))}
-      </div>
+    </div>
   );
 }
 

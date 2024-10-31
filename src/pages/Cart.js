@@ -1,9 +1,8 @@
-import { useContext } from 'react';
-import { CartContext } from '../context/CartContext';
+import { useCart } from '../context/CartContext';
 import { Link } from 'react-router-dom';
 
 const Cart = () => {
-  const { cartItems, itemCount, calculateTotalPrice, increase, decrease, removeFromCart } = useContext(CartContext);
+  const { cartItems, itemCount, calculateTotalPrice, increase, decrease, removeFromCart } = useCart();
 
   return (
     <div className="cart-container">
@@ -22,8 +21,8 @@ const Cart = () => {
               <span className="cart-item-quantity">{item.quantity} x ${item.price.toFixed(2)}</span>
             </div>
             <div className="cart-item-actions">
-              <button className="cart-button" onClick={() => increase(item.id)}>+</button>
-              <button className="cart-button" onClick={() => decrease(item.id)}>-</button>
+              <button className="increase-btn" onClick={() => increase(item.id)}>+</button>
+              <button className="decrease-btn" onClick={() => decrease(item.id)}>-</button>
               <button className="cart-button remove-button" onClick={() => removeFromCart(item.id)}>Remove</button>
             </div>
           </li>

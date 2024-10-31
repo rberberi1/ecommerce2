@@ -40,10 +40,22 @@ code {
   gap:10rem;
   height:4.5rem;
   flex-direction: row;
-  justify-content: end;
+  justify-content: space-between;
   padding-right: 5rem;
+  padding-left: 8rem;
   align-items: center;
   background-color: rgb(80, 98, 179);
+}
+
+.navbar-right{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap:10rem;
+}
+
+.navbar-right img{
+  margin-top:1rem;
 }
 
 .navbar a{
@@ -97,12 +109,18 @@ code {
 button {
   margin-top: 1rem;
   padding: 8px 12px;
-  background-color: #007bff;
+  background-color: #0a66c9cb;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s;
+}
+
+.theme-btn{
+  border: white solid;
+  border-width: 1px;
+  font-weight: bold;
 }
 
 button:hover {
@@ -120,14 +138,31 @@ button:hover {
   color: white; 
   font-size: 0.75rem; 
   position: absolute; 
-  top: 1.2rem; 
-  right: 20rem; 
+  top: 1.4rem; 
+  right: 20.5rem; 
   transform: translate(50%, -50%); 
+}
+
+.increase-btn{
+  margin-left: 1rem;
+  margin-right: 1rem;
+  background-color: #034993;
+}
+
+.decrease-btn{
+  margin-left: 1rem;
+  margin-right: 1rem;
+  background-color: #034993;
+}
+
+.cart-status{
+  margin-top: 1rem;
 }
 
 .cart-container {
   display: flex;
   max-width: 60rem;
+  min-height: calc(100vh - 12rem);
   margin:  auto; 
   padding: 2rem;
   background-color: #f9f9f9; 
