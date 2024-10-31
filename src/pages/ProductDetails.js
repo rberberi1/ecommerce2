@@ -11,9 +11,7 @@ const ProductDetails = () => {
   const [quantity, setQuantity] = useState(cartItem ? cartItem.quantity : 1); 
 
   const handleAddToCart = () => {
-    if (quantity > 0) {
       addToCart(product, quantity); 
-    }
   };
 
   const handleIncrease = () => {
@@ -46,9 +44,9 @@ const ProductDetails = () => {
       <div className="product-details-right">
         <p className="product-description">{product.description}</p>
         <div>
-          Quantity:
+          
           <button className="increase-btn" onClick={handleDecrease}>-</button>
-          <span>{cartItem ? cartItem.quantity : quantity}</span>
+          <span>Quantity:{cartItem ? cartItem.quantity : quantity}</span>
           <button className="decrease-btn" onClick={handleIncrease}>+</button>
         </div>
         {cartItem ? (

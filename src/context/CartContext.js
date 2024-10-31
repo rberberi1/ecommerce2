@@ -15,69 +15,51 @@ import { products } from '../data';
   }, []);
 
 
-  const itemCount = useMemo(
-    () => cartItems.length,
-    [cartItems]
-  );
+  const itemCount = cartItems.length;
 
 
   const calculateTotalPrice = useMemo(() => {
     return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
   }, [cartItems]);
 
-  
+
+
   const addToCart = (product, quantity) => {
-    setCartItems(prevItems => {
-      const existingItem = prevItems.find(item => item.id === product.id);
-      let updatedItems;
-
-      if (existingItem) {
-        updatedItems = prevItems.map(item =>
-          item.id === product.id ? { ...item, quantity: item.quantity + Number(quantity)} : item
-        );
-      } else {
-        updatedItems = [...prevItems, { ...product, quantity:Number(quantity) }];
-      }
-
-      localStorage.setItem('cartItems', JSON.stringify(updatedItems));
-      return updatedItems;
-    });
+    const updatedItems = [...cartItems, { ...product, quantity: Number(quantity) }]; 
+    localStorage.setItem('cartItems', JSON.stringify(updatedItems));
+    setCartItems(updatedItems);
   };
-
+  
   const increase = (productId) => {
-    setCartItems(prevItems => {
-      const updatedItems = prevItems.map(item =>
-        item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
-      );
-
-      localStorage.setItem('cartItems', JSON.stringify(updatedItems));
-      return updatedItems;
-    });
+    const updatedItems = cartItems.map(item =>
+      item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
+    );
+  
+    localStorage.setItem('cartItems', JSON.stringify(updatedItems));
+    setCartItems(updatedItems);
   };
+  
 
   const decrease = (productId) => {
-    setCartItems(prevItems => {
-      const updatedItems = prevItems.map(item =>
-        item.id === productId ? { ...item, quantity: Math.max((item.quantity - 1), 1 )} : item
-      );
-
-      localStorage.setItem('cartItems', JSON.stringify(updatedItems));
-      return updatedItems;
-    });
+    const updatedItems = cartItems.map(item =>
+      item.id === productId ? { ...item, quantity: Math.max(item.quantity - 1, 1) } : item
+    );
+  
+    localStorage.setItem('cartItems', JSON.stringify(updatedItems));
+    setCartItems(updatedItems);
   };
+  
 
   const removeFromCart = (productId) => {
-    setCartItems(prevItems => {
-      const updatedItems = prevItems.filter(item => item.id !== productId);
-
-      
-      localStorage.setItem('cartItems', JSON.stringify(updatedItems));
-      return updatedItems;
-    });
+    const updatedItems = cartItems.filter(item => item.id !== productId);
+  
+    localStorage.setItem('cartItems', JSON.stringify(updatedItems));
+    setCartItems(updatedItems);
   };
+  
 
-  const getProductDetails= (id) => {
-    const product = products.find(item => item.id === parseInt(id)); 
+  const getProductDetails= (productId) => {
+    const product = products.find(item => item.id === parseInt(productId)); 
     return product;
   }
 

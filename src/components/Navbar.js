@@ -12,7 +12,7 @@ const Navbar=()=>{
 
     <nav className='navbar'>
       <div className='navbar-left'>
-      <Link to="/products">Store</Link>
+      <Link to="/">Store</Link>
       </div>
 
       <div className='navbar-right'>

@@ -12,7 +12,7 @@ function App() {
       <BrowserRouter>
       <Navbar/>
         <Routes>
-          <Route path="/products" element={<Store/>}></Route>
+          <Route path="/" element={<Store/>}></Route>
           <Route path="/products/:id" element={<ProductDetails/>}></Route>
           <Route path="/cart" element={<Cart/>}></Route>
           <Route path="*" element={<div>Page Not Found</div>}></Route>
