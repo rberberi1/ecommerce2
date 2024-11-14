@@ -4,6 +4,7 @@ import Cart from './pages/Cart';
 import Navbar from './components/Navbar';
 import ProductDetails from './pages/ProductDetails';
 import { ThemeProvider } from './context/ThemeContext';
+import ProductForm from './components/ProductForm';
 
 function App() {
   return (
@@ -15,6 +16,8 @@ function App() {
           <Route path="/" element={<Store/>}></Route>
           <Route path="/products/:id" element={<ProductDetails/>}></Route>
           <Route path="/cart" element={<Cart/>}></Route>
+          <Route path="/edit-product/:id" element={<ProductForm/>} />
+          <Route path="/add-product" element={<ProductForm/>} />
           <Route path="*" element={<div>Page Not Found</div>}></Route>
         </Routes>
       </BrowserRouter>

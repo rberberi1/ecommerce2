@@ -7,6 +7,7 @@ import { products } from '../data';
 
 
   const [cartItems, setCartItems] = useState([]);
+  const [allProducts, setAllProducts] = useState(products);
 
 
   useEffect(() => {
@@ -59,16 +60,43 @@ import { products } from '../data';
   
 
   const getProductDetails= (productId) => {
-    const product = products.find(item => item.id === parseInt(productId)); 
+    const product = allProducts.find(item => item.id === parseInt(productId)); 
     return product;
   }
 
-  const getAllProducts=()=>{
-    return products;
-  }
+  const addProduct = (newProduct) => {
+    const updatedProducts = [...allProducts, newProduct];
+    setAllProducts(updatedProducts);  
+  };
+
+  const editProduct = (updatedProduct) => {
+    const updatedProducts = allProducts.map(product =>
+      product.id === updatedProduct.id ? updatedProduct : product
+    );
+    setAllProducts(updatedProducts); 
+  };
+
+  const deleteProduct = (productId) => {
+    const updatedProducts = allProducts.filter(product => product.id!== productId);
+    setAllProducts(updatedProducts);  
+  };
 
   return (
-    <CartContext.Provider value={{ addToCart, increase, decrease, removeFromCart, cartItems, calculateTotalPrice, itemCount, getProductDetails, getAllProducts}}>
+    <CartContext.Provider 
+    value={{ 
+      addToCart, 
+      increase, 
+      decrease, 
+      removeFromCart, 
+      cartItems, 
+      calculateTotalPrice, 
+      itemCount, 
+      getProductDetails, 
+      addProduct,
+      editProduct,
+      deleteProduct,
+      allProducts
+      }}>
       {children}
     </CartContext.Provider>
   );

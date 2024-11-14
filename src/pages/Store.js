@@ -1,21 +1,26 @@
 import ProductCard from '../components/ProductCard';
+import Sidebar from '../components/Sidebar';
 import { useCart } from '../context/CartContext';
+import { Box } from '@mui/material';
 
 const Store = () => {
-  const { addToCart, getAllProducts } = useCart();
-
-  const products = getAllProducts();
+  const { addToCart, allProducts } = useCart();
 
   return (
-    <div className="products-grid">
-      {products.map(product => (
-        <ProductCard 
-          key={product.id}
-          product={product}
-          onAddToCart={(quantity) => addToCart(product, quantity)}
-        />
-      ))}
-    </div>
+    <Box display="flex">
+     
+      <Sidebar />
+
+      <Box className="products-grid" sx={{ flexGrow: 1, p: 2 }}>
+        {allProducts.map(product => (
+          <ProductCard 
+            key={product.id}
+            product={product}
+            onAddToCart={(quantity) => addToCart(product, quantity)}
+          />
+        ))}
+      </Box>
+    </Box>
   );
 }
 

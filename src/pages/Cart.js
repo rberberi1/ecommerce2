@@ -1,37 +1,62 @@
 import { useCart } from '../context/CartContext';
 import { Link } from 'react-router-dom';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider';
 
 const Cart = () => {
   const { cartItems, itemCount, calculateTotalPrice, increase, decrease, removeFromCart } = useCart();
 
   return (
-    <div className="cart-container">
-      <div className='shopping-cart-price-box'>
-      <h2 className="cart-title">Shopping Cart</h2>
-      <p className="cart-summary">Products: {itemCount}</p>
-      <p className="cart-summary">Total Price: ${calculateTotalPrice.toFixed(2)}</p>
-      </div>
-      <div>
-        { itemCount >0 ?( 
-      <ul className="cart-items-list">
-        {cartItems.map(item => (
-          <li key={item.id} className="cart-item">
-            <div className="cart-item-details">
-              <Link to={`/products/${item.id}`}><span className="cart-item-name">{item.name}</span></Link>
-              <span className="cart-item-quantity">{item.quantity} x ${item.price.toFixed(2)}</span>
-            </div>
-            <div className="cart-item-actions">
-              <button className="increase-btn" onClick={() => increase(item.id)}>+</button>
-              <button className="decrease-btn" onClick={() => decrease(item.id)}>-</button>
-              <button className="cart-button remove-button" onClick={() => removeFromCart(item.id)}>Remove</button>
-            </div>
-          </li>
-        ))}
-      </ul>
-        ): <p className="cart-items-list">Your cart is empty.</p>
-      }
-      </div>
-    </div>
+    <Box sx={{ maxWidth: 600, mx: 'auto', mt: 4, p: 2, boxShadow: 3, borderRadius: 2, bgcolor: 'background.paper', height: '100vh'}}>
+      <Box sx={{ textAlign: 'center', mb: 3 }}>
+        <Typography variant="h4" component="h2">Shopping Cart</Typography>
+        <Typography variant="subtitle1">Products: {itemCount}</Typography>
+        <Typography variant="subtitle1">Total Price: ${calculateTotalPrice.toFixed(2)}</Typography>
+      </Box>
+      
+      <Divider />
+
+      {itemCount > 0 ? (
+        <List >
+          {cartItems.map((item) => (
+            <ListItem key={item.id} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', mb: 2 }}
+              style={{borderBottom:'gray solid'}}>
+              <ListItemText 
+                primary={
+                  <Link to={`/products/${item.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                    {item.name}
+                  </Link>
+                }
+                secondary={`${item.quantity} x $${item.price.toFixed(2)}`}
+                sx={{ width: '100%' }}
+              />
+
+              <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
+                <Button variant="outlined" size="small" onClick={() => decrease(item.id)}>-</Button>
+                <Typography sx={{ mx: 2 }}>{item.quantity}</Typography>
+                <Button variant="outlined" size="small" onClick={() => increase(item.id)}>+</Button>
+                <Button
+                  variant="contained"
+                  color="error"
+                  size="small"
+                  onClick={() => removeFromCart(item.id)}
+                  sx={{ ml: 2 }}
+                >
+                  Remove
+                </Button>
+              </Box>
+            </ListItem>
+          ))}
+        </List>
+      ) : (
+        <Typography variant="body1" sx={{ textAlign: 'center', mt: 3 }}>Your cart is empty.</Typography>
+      )}
+    </Box>
   );
 }
 
