@@ -51,7 +51,7 @@ const ProductDetails = () => {
   }
 
   return (
-    <Box sx={{ maxWidth: 800, mx: 'auto', p: 3, backgroundColor: '#f0f0f0', height: '100vh' }}>
+    <Box sx={{ maxWidth: 800, mx: 'auto', p: 3, backgroundColor: '#f0f0f0', minHeight: '100vh' }}>
       <Grid container spacing={3} justifyContent="center" alignItems="flex-start">
         <Grid item xs={12} md={6}>
           <Typography variant="h4" gutterBottom>{product.title}</Typography>

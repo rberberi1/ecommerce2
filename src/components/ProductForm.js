@@ -40,7 +40,7 @@ const ProductForm = ({  }) => {
 
   return (
     <Card style={{maxWidth: '60%', alignItems:'center', display:'flex', justifyContent:'center', margin:'auto'}}>
-      <CardContent>
+      <CardContent sx={{mt:3, mb:3}}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <TextField {...register('title')} label="Product Name" fullWidth margin="normal" />
           <TextField {...register('price')} label="Price" fullWidth margin="normal" type="number"/>

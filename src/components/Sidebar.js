@@ -13,7 +13,6 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 
 const Sidebar = () => {
   const { allProducts, setAllProducts } = useCart();
-  const [searchTerm, setSearchTerm] = useState('');
   const [priceOrder, setPriceOrder] = useState('');
 
   const filterAndSortProducts = () => {
@@ -34,7 +33,7 @@ const Sidebar = () => {
 
   useEffect(() => {
     filterAndSortProducts();
-  }, [searchTerm, priceOrder]);
+  }, [ priceOrder]);
 
   const handleSortChange = (e) => {
     setPriceOrder(e.target.value);
@@ -44,6 +43,7 @@ const Sidebar = () => {
     <Box sx={{ width: 250, p: 3, bgcolor: '#FB8500', position: 'sticky', top: 2, height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
       <Box>
         <Typography variant="h6" gutterBottom sx={{ mt: 4 }}>Filter</Typography>
+
 
         <FormControl fullWidth sx={{ mb: 3, bgcolor: '#fff', mt: 4  }}>
           <InputLabel >Sort by Price</InputLabel>

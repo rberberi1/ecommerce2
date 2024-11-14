@@ -7,26 +7,32 @@ import { products } from '../data';
 
 
   const [cartItems, setCartItems] = useState([]);
-  const [allProducts, setAllProducts] = useState([]);
+  const [allProducts, setAllProducts] = useState(products);
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch('https://fakestoreapi.com/products');
-        const products = await response.json();
-        console.log(products);
-        setAllProducts(products);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchProducts = async () => {
+  //     try {
+  //       const response = await fetch('https://fakestoreapi.com/products');
+  //       const products = await response.json();
+  //       console.log(products);
+  //       setAllProducts(products);
+  //       localStorage.setItem('allProducts', JSON.stringify(products));
+  //     } catch (error) {
+  //       console.error("Error fetching products:", error);
+  //     }
+  //   };
 
-    fetchProducts();
-  }, []);
+  //   fetchProducts();
+  // }, []);
 
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem('cartItems')) || [];
     setCartItems(storedCart);
+  }, []);
+
+  useEffect(() => {
+    const storedProducts = JSON.parse(localStorage.getItem('allProducts')) || [];
+    setAllProducts(storedProducts);
   }, []);
 
 
@@ -80,6 +86,7 @@ import { products } from '../data';
 
   const addProduct = (newProduct) => {
     const updatedProducts = [...allProducts,{...newProduct, id:Date.now()}];
+    localStorage.setItem('allProducts', JSON.stringify(updatedProducts));
     setAllProducts(updatedProducts);  
   };
 
@@ -87,11 +94,13 @@ import { products } from '../data';
     const updatedProducts = allProducts.map(product =>
       product.id === updatedProduct.id ? updatedProduct : product
     );
+    localStorage.setItem('allProducts', JSON.stringify(updatedProducts));
     setAllProducts(updatedProducts); 
   };
 
   const deleteProduct = (productId) => {
     const updatedProducts = allProducts.filter(product => product.id!== productId);
+    localStorage.setItem('allProducts', JSON.stringify(updatedProducts));
     setAllProducts(updatedProducts);  
   };
 
