@@ -46,7 +46,7 @@ const Navbar = () => {
               overlap="rectangular"
               sx={{ position: 'relative' }}
             >
-              <img src={CartIcon} alt="Shopping cart" style={{ height: '2rem' }} />
+              <img src={CartIcon} alt="Shopping cart" style={{ height: '2rem'}} />
             </Badge>
           </IconButton>
 

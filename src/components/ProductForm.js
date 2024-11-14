@@ -18,7 +18,7 @@ const ProductForm = ({  }) => {
   useEffect(() => {
     console.log(productToEdit)
     if (productToEdit) {
-      setValue('name', productToEdit.name);
+      setValue('title', productToEdit.title);
       setValue('price', productToEdit.price);
       setValue('description', productToEdit.description);
     }
@@ -39,11 +39,11 @@ const ProductForm = ({  }) => {
   }
 
   return (
-    <Card>
+    <Card style={{maxWidth: '60%', alignItems:'center', display:'flex', justifyContent:'center', margin:'auto'}}>
       <CardContent>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <TextField {...register('name')} label="Product Name" fullWidth margin="normal" />
-          <TextField {...register('price')} label="Price" fullWidth margin="normal" type="number" />
+          <TextField {...register('title')} label="Product Name" fullWidth margin="normal" />
+          <TextField {...register('price')} label="Price" fullWidth margin="normal" type="number"/>
           <TextField {...register('description')} label="Description" fullWidth margin="normal" multiline rows={4} />
           <Button type="submit" variant="contained" color="primary">
             {productToEdit ? 'Edit Product' : 'Add Product'}

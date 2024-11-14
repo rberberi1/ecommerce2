@@ -7,8 +7,22 @@ import { products } from '../data';
 
 
   const [cartItems, setCartItems] = useState([]);
-  const [allProducts, setAllProducts] = useState(products);
+  const [allProducts, setAllProducts] = useState([]);
 
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('https://fakestoreapi.com/products');
+        const products = await response.json();
+        console.log(products);
+        setAllProducts(products);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem('cartItems')) || [];
@@ -65,7 +79,7 @@ import { products } from '../data';
   }
 
   const addProduct = (newProduct) => {
-    const updatedProducts = [...allProducts, newProduct];
+    const updatedProducts = [...allProducts,{...newProduct, id:Date.now()}];
     setAllProducts(updatedProducts);  
   };
 
@@ -95,7 +109,8 @@ import { products } from '../data';
       addProduct,
       editProduct,
       deleteProduct,
-      allProducts
+      allProducts,
+      setAllProducts
       }}>
       {children}
     </CartContext.Provider>

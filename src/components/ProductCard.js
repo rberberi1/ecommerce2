@@ -45,7 +45,7 @@ const ProductCard = ({ product }) => {
       <CardContent>
         <Link to={`/products/${product.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
           <Typography variant="h6" component="div">
-            {product.name}
+            {product.title}
           </Typography>
         </Link>
         <Typography variant="body2" color="text.secondary">

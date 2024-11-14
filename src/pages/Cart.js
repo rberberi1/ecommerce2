@@ -12,7 +12,7 @@ const Cart = () => {
   const { cartItems, itemCount, calculateTotalPrice, increase, decrease, removeFromCart } = useCart();
 
   return (
-    <Box sx={{ maxWidth: 600, mx: 'auto', mt: 4, p: 2, boxShadow: 3, borderRadius: 2, bgcolor: 'background.paper', height: '100vh'}}>
+    <Box sx={{ maxWidth: 600, mx: 'auto', mt: 4, p: 2, boxShadow: 3, borderRadius: 2, bgcolor: 'background.paper',minHeight: '100vh'}}>
       <Box sx={{ textAlign: 'center', mb: 3 }}>
         <Typography variant="h4" component="h2">Shopping Cart</Typography>
         <Typography variant="subtitle1">Products: {itemCount}</Typography>
@@ -29,7 +29,7 @@ const Cart = () => {
               <ListItemText 
                 primary={
                   <Link to={`/products/${item.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                    {item.name}
+                    {item.title}
                   </Link>
                 }
                 secondary={`${item.quantity} x $${item.price.toFixed(2)}`}
