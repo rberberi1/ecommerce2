@@ -7,7 +7,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useCart } from '../context/CartContext';
 
-const ProductForm = ({  }) => {
+const ProductForm = () => {
   const {id}=useParams();
   const { register, handleSubmit, setValue, reset } = useForm();
   const {getProductDetails, addProduct, editProduct}=useCart()
@@ -43,7 +43,7 @@ const ProductForm = ({  }) => {
       <CardContent sx={{mt:3, mb:3}}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <TextField {...register('title')} label="Product Name" fullWidth margin="normal" />
-          <TextField {...register('price')} label="Price" fullWidth margin="normal" type="number"/>
+          <TextField {...register('price')} max={3} label="Price" fullWidth margin="normal" type="number"/>
           <TextField {...register('description')} label="Description" fullWidth margin="normal" multiline rows={4} />
           <Button type="submit" variant="contained" color="primary">
             {productToEdit ? 'Edit Product' : 'Add Product'}

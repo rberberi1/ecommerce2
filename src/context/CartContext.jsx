@@ -9,22 +9,6 @@ import { products } from '../data';
   const [cartItems, setCartItems] = useState([]);
   const [allProducts, setAllProducts] = useState(products);
 
-  // useEffect(() => {
-  //   const fetchProducts = async () => {
-  //     try {
-  //       const response = await fetch('https://fakestoreapi.com/products');
-  //       const products = await response.json();
-  //       console.log(products);
-  //       setAllProducts(products);
-  //       localStorage.setItem('allProducts', JSON.stringify(products));
-  //     } catch (error) {
-  //       console.error("Error fetching products:", error);
-  //     }
-  //   };
-
-  //   fetchProducts();
-  // }, []);
-
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem('cartItems')) || [];
     setCartItems(storedCart);
